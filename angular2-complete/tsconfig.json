@@ -17,6 +17,7 @@
   "files": [
     "app/app.component.ts",
     "app/main.ts",
+    "app/model/movie.ts",
     "typings/globals/core-js/index.d.ts",
     "typings/globals/jasmine/index.d.ts",
     "typings/globals/node/index.d.ts",
