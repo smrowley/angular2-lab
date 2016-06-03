@@ -1,5 +1,14 @@
-<h1>{{movie.name}}</h1>
-<div><label>name: </label>{{movie.name}}</div>
-<p>{{movie.year}}</p>
-
-<input [(ngModel)]="movie.name" />
+<h1>My Movie Database</h1>
+<br/>
+<div class="searchbox">
+  <input #movieSearch class="form-control searchfield" placeholder="Search a movie" [(ngModel)]="searchValue" />
+  <button class="btn btn-primary" (click)="onSearchMovie(movieSearch.value)">Search</button><br/>
+</div>
+<div>
+  <ul class="movielist">
+    <li class="list-group-item" *ngFor="let movie of movies|searchFilter:searchValue" (click)="onSelectMovie(movie)">
+      {{movie.name}} <span class="year">{{movie.year}}</span>
+    </li>
+  </ul>
+</div>
+<movie-detail [movie]="selectedMovie"></movie-detail>

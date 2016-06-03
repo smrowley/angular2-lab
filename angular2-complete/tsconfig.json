@@ -17,7 +17,11 @@
   "files": [
     "app/app.component.ts",
     "app/main.ts",
+    "app/mock-movies.ts",
     "app/model/movie.ts",
+    "app/movie-detail.component.ts",
+    "app/movie.service.ts",
+    "app/search.pipe.ts",
     "typings/globals/core-js/index.d.ts",
     "typings/globals/jasmine/index.d.ts",
     "typings/globals/node/index.d.ts",

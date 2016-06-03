@@ -1,29 +1,40 @@
 import {Component} from '@angular/core';
 import {Movie} from './model/movie';
+import {SearchPipe} from './search.pipe';
+import {MovieDetailComponent} from './movie-detail.component';
+import {MovieService} from './movie.service';
+import {OnInit} from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  templateUrl: 'templates/movie.html'
+  templateUrl: 'templates/movie.html',
+  styleUrls: ['styles/movies.css'],
+  pipes: [SearchPipe],
+  directives: [MovieDetailComponent],
+  providers: [MovieService]
 })
-export class AppComponent {
-  public movie: Movie;
+export class AppComponent implements OnInit {
+  selectedMovie: Movie;
+  searchValue: string = '';
+  movies: Movie[];
 
-  public movies = MOVIES;
+  constructor(private movieService: MovieService) {
 
-  constructor() {
-    this.movie = {
-      name: 'The Martian',
-      year: 2015
-    };
+  }
+
+  ngOnInit() {
+    this.getMovies();
+  }
+
+  getMovies() {
+    this.movies = this.movieService.getMovies();
+  }
+
+  onSearchMovie(searchValue: string) {
+    this.searchValue = searchValue;
+  }
+
+  onSelectMovie(selectedMovie: Movie) {
+    this.selectedMovie = selectedMovie;
   }
 }
-
-var MOVIES: Movie[] = [
-  {name: 'Back To The Future', year: 1985},
-  {name: 'The Martian', year: 2015},
-  {name: 'The Matrix', year: 1999},
-  {name: 'The Notebook', year: 2004},
-  {name: 'The Shawshank Redemption', year: 1994},
-  {name: 'Iron Man', year: 2008},
-  {name: 'Star Wars', year: 1977}
-];
